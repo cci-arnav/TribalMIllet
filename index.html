@@ -1,0 +1,2164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TribalMillet — Nourishing People. Uplifting Tribes. Restoring Seeds.</title>
+<meta name="description" content="TribalMillet sources whole millets and millet foods directly from tribal farming communities — nourishing people, uplifting tribes, restoring seeds.">
+<style>
+/* ============================================================
+   TribalMillet — Design System
+   Palette: millet gold / warm mustard, deep forest green,
+   warm cream background,   charcoal text.
+   Display face: Fraunces (warm, editorial serif)
+   Body face: Inter
+   Utility/mono face: IBM Plex Mono (labels, prices, badges)
+   ============================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
+:root {
+  --mustard: #C68A2F;
+  --mustard-deep: #A56F1F;
+  --mustard-tint: #F0DFB4;
+  --forest: #2F4A3C;
+  --forest-deep: #223528;
+  --cream: #F7F1E4;
+  --cream-alt: #EFE6D2;
+  --white: #FFFFFF;
+  --charcoal: #2B2420;
+  --charcoal-soft: #5A4F45;
+  --line: rgba(43, 36, 32, 0.12);
+  --radius: 4px;
+  --radius-lg: 6px;
+  --shadow-card: 0 1px 2px rgba(43,36,32,0.06), 0 8px 24px rgba(43,36,32,0.05);
+  --max-width: 1180px;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', sans-serif;
+  background: var(--cream);
+  color: var(--charcoal);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img { max-width: 100%; display: block; }
+
+a { color: inherit; text-decoration: none; }
+
+h1, h2, h3, h4 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 0.5em;
+  letter-spacing: -0.01em;
+}
+
+h1 { font-size: clamp(2.4rem, 4.5vw, 4rem); font-weight: 600; }
+h2 { font-size: clamp(1.9rem, 3vw, 2.6rem); }
+h3 { font-size: 1.4rem; }
+
+p { margin: 0 0 1em; color: var(--charcoal-soft); }
+
+.eyebrow {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--mustard-deep);
+  font-weight: 500;
+  display: inline-block;
+  margin-bottom: 0.9em;
+}
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+section { padding: 88px 0; }
+@media (max-width: 720px) {
+  section { padding: 56px 0; }
+}
+
+.section-tight { padding: 56px 0; }
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  font-size: 0.95rem;
+  padding: 13px 28px;
+  border-radius: var(--radius);
+  border: 1.5px solid transparent;
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+  line-height: 1;
+}
+.btn:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+.btn-primary {
+  background: var(--forest);
+  color: var(--cream);
+}
+.btn-primary:hover { background: var(--forest-deep); }
+.btn-mustard {
+  background: var(--mustard);
+  color: var(--white);
+}
+.btn-mustard:hover { background: var(--mustard-deep); }
+.btn-outline {
+  background: transparent;
+  border-color: var(--charcoal);
+  color: var(--charcoal);
+}
+.btn-outline:hover { background: var(--charcoal); color: var(--cream); }
+.btn-block { width: 100%; }
+.btn-sm { padding: 9px 18px; font-size: 0.85rem; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ---------- Header ---------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(247, 241, 228, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+
+.site-header .container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 76px;
+}
+
+.wordmark {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  color: var(--charcoal);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.wordmark span { color: var(--mustard-deep); }
+.wordmark-logo { gap: 0; }
+.wordmark-logo img { display: block; height: 52px; width: auto; }
+.wordmark-footer img { height: 60px; }
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
+.main-nav a {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--charcoal-soft);
+  position: relative;
+  padding: 4px 0;
+}
+.main-nav a:hover, .main-nav a.active { color: var(--charcoal); }
+.main-nav a.active::after {
+  content: "";
+  position: absolute;
+  left: 0; right: 0; bottom: -4px;
+  height: 2px;
+  background: var(--mustard);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.cart-link {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.cart-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--mustard);
+  color: var(--white);
+  font-size: 0.72rem;
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-toggle svg { width: 24px; height: 24px; }
+
+@media (max-width: 860px) {
+  .main-nav {
+    position: fixed;
+    top: 76px;
+    left: 0; right: 0;
+    background: var(--cream);
+    border-bottom: 1px solid var(--line);
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+    padding: 8px 24px 20px;
+    transform: translateY(-8px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  .main-nav.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .main-nav a { padding: 12px 0; width: 100%; border-bottom: 1px solid var(--line); }
+  .nav-toggle { display: block; }
+}
+
+/* ---------- Footer ---------- */
+
+.site-footer {
+  background: var(--forest);
+  color: var(--mustard-tint);
+  padding: 64px 0 32px;
+}
+.site-footer a { color: var(--cream); }
+.site-footer a:hover { color: var(--mustard); }
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 48px;
+}
+@media (max-width: 720px) {
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+.footer-grid h4 {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--cream);
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+.footer-grid ul { list-style: none; margin: 0; padding: 0; }
+.footer-grid li { margin-bottom: 10px; font-size: 0.92rem; }
+.footer-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--cream);
+  max-width: 320px;
+}
+.footer-bottom {
+  border-top: 1px solid rgba(247,241,228,0.15);
+  padding-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: 0.82rem;
+  color: rgba(247,241,228,0.65);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  align-items: center;
+  gap: 48px;
+  padding-top: 56px;
+}
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; padding-top: 32px; }
+  .hero-media { order: -1; }
+}
+.hero-tagline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.15rem, 2vw, 1.4rem);
+  color: var(--forest);
+  margin-bottom: 20px;
+}
+.hero-media {
+  position: relative;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 4/5;
+}
+.hero-media img {
+  width: 100%; height: 100%; object-fit: cover;
+}
+.hero-actions { display: flex; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
+
+.stat-row {
+  display: flex;
+  gap: 40px;
+  margin-top: 48px;
+  flex-wrap: wrap;
+}
+.stat-row .stat-num {
+  font-family: 'Fraunces', serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--forest);
+  display: block;
+}
+.stat-row .stat-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--charcoal-soft);
+}
+
+/* ---------- Editorial feature row (image + text, alternating) ---------- */
+
+.feature-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: center;
+}
+.feature-row:not(:last-child) { margin-bottom: 88px; }
+.feature-row.reverse .feature-media { order: 2; }
+@media (max-width: 860px) {
+  .feature-row { grid-template-columns: 1fr; gap: 28px; }
+  .feature-row.reverse .feature-media { order: -1; }
+  .feature-row:not(:last-child) { margin-bottom: 48px; }
+}
+.feature-media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 5/4;
+}
+.feature-media img { width: 100%; height: 100%; object-fit: cover; }
+.feature-badge {
+  display: inline-block;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  background: var(--mustard-tint);
+  color: var(--mustard-deep);
+  padding: 8px 16px;
+  border-radius: 999px;
+  margin-top: 20px;
+}
+
+/* ---------- Mission ledger (signature element) ---------- */
+
+.ledger {
+  border-top: 1px solid var(--line);
+}
+.ledger-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  gap: 32px;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 640px) {
+  .ledger-row { grid-template-columns: 60px 1fr; gap: 18px; }
+}
+.ledger-mark {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--mustard-deep);
+  padding-top: 4px;
+}
+.ledger-row h3 { margin-bottom: 8px; }
+.ledger-row p { margin: 0; max-width: 60ch; }
+
+/* ---------- Product cards (grid) ---------- */
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+@media (max-width: 940px) {
+  .product-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 620px) {
+  .product-grid { grid-template-columns: 1fr; }
+}
+
+.product-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+.product-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(43,36,32,0.08), 0 16px 32px rgba(43,36,32,0.08);
+}
+.product-card-media {
+  aspect-ratio: 1/1;
+  overflow: hidden;
+}
+.product-card-media img { width: 100%; height: 100%; object-fit: cover; }
+.product-card-body {
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.product-card-cat {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--mustard-deep);
+  margin-bottom: 8px;
+}
+.product-card-body h3 { font-size: 1.2rem; margin-bottom: 8px; }
+.product-card-body p { font-size: 0.92rem; flex: 1; }
+
+.rating-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  font-size: 0.85rem;
+  color: var(--charcoal-soft);
+}
+.stars { color: var(--mustard); letter-spacing: 1px; font-size: 0.9rem; }
+
+.price-row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin: 12px 0 16px;
+}
+.price {
+  font-family: 'IBM Plex Mono', monospace;
+  font-weight: 500;
+  font-size: 1.15rem;
+  color: var(--charcoal);
+}
+.price-unit {
+  font-size: 0.78rem;
+  color: var(--charcoal-soft);
+}
+
+.card-actions { display: flex; gap: 10px; }
+.card-actions .btn { flex: 1; padding: 11px 14px; font-size: 0.86rem; }
+
+/* ---------- Product detail page ---------- */
+
+.product-detail {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .product-detail { grid-template-columns: 1fr; gap: 28px; }
+}
+.product-detail-media {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  aspect-ratio: 1/1;
+  position: sticky;
+  top: 100px;
+}
+.product-detail-media img { width: 100%; height: 100%; object-fit: cover; }
+@media (max-width: 860px) {
+  .product-detail-media { position: static; }
+}
+
+.qty-stepper {
+  display: inline-flex;
+  align-items: center;
+  border: 1.5px solid var(--charcoal);
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.qty-stepper button {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 44px;
+  font-size: 1.1rem;
+  cursor: pointer;
+  color: var(--charcoal);
+}
+.qty-stepper button:hover { background: var(--mustard-tint); }
+.qty-stepper input {
+  width: 44px;
+  text-align: center;
+  border: none;
+  border-left: 1.5px solid var(--charcoal);
+  border-right: 1.5px solid var(--charcoal);
+  height: 44px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 1rem;
+  background: transparent;
+}
+
+.detail-actions { display: flex; gap: 14px; margin: 28px 0; flex-wrap: wrap; }
+.detail-actions .btn { padding: 14px 30px; }
+
+.highlight-list { list-style: none; padding: 0; margin: 24px 0; }
+.highlight-list li {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 0.94rem;
+  display: flex;
+  gap: 10px;
+}
+.highlight-list li::before { content: "—"; color: var(--mustard-deep); flex-shrink: 0; }
+
+/* ---------- Reviews ---------- */
+
+.review-item {
+  padding: 22px 0;
+  border-bottom: 1px solid var(--line);
+}
+.review-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.review-name { font-weight: 600; }
+.review-date { font-size: 0.8rem; color: var(--charcoal-soft); }
+.review-empty {
+  padding: 32px;
+  text-align: center;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  color: var(--charcoal-soft);
+}
+
+.review-form {
+  background: var(--white);
+  padding: 28px;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.star-picker {
+  display: flex;
+  gap: 6px;
+  font-size: 1.6rem;
+  margin: 8px 0 20px;
+}
+.star-picker button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--line);
+  padding: 0;
+  line-height: 1;
+}
+.star-picker button.active,
+.star-picker button:hover,
+.star-picker button:hover ~ button { color: var(--mustard); }
+
+.form-field { margin-bottom: 18px; }
+.form-field label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.form-field input,
+.form-field textarea,
+.form-field select {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid var(--line);
+  border-radius: var(--radius);
+  font-family: 'Inter', sans-serif;
+  font-size: 0.95rem;
+  background: var(--cream);
+  color: var(--charcoal);
+}
+.form-field input:focus,
+.form-field textarea:focus,
+.form-field select:focus {
+  outline: none;
+  border-color: var(--forest);
+}
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+@media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+.millet-check-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.millet-check-group input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.millet-check-group label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  background: var(--cream);
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--charcoal-soft);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s ease, background 0.15s ease, color 0.15s ease;
+  margin: 0;
+}
+.millet-check-group label .tick {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  border: 1.5px solid var(--line);
+  background: var(--white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.millet-check-group label .tick svg {
+  width: 11px;
+  height: 11px;
+  opacity: 0;
+  stroke: var(--white);
+  stroke-width: 3;
+}
+.millet-check-group input[type="checkbox"]:checked + label {
+  border-color: var(--forest);
+  background: var(--forest);
+  color: var(--white);
+}
+.millet-check-group input[type="checkbox"]:checked + label .tick {
+  background: var(--mustard);
+  border-color: var(--mustard);
+}
+.millet-check-group input[type="checkbox"]:checked + label .tick svg { opacity: 1; }
+.millet-check-group input[type="checkbox"]:focus-visible + label {
+  outline: 2px solid var(--forest);
+  outline-offset: 2px;
+}
+.form-hint {
+  font-size: 0.78rem;
+  color: var(--charcoal-soft);
+  margin: 6px 0 0;
+}
+
+.form-success {
+  background: var(--mustard-tint);
+  color: var(--forest-deep);
+  padding: 14px 18px;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  margin-bottom: 18px;
+  display: none;
+}
+.form-success.show { display: block; }
+
+/* ---------- Cart page ---------- */
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .cart-layout { grid-template-columns: 1fr; }
+}
+.cart-line {
+  display: grid;
+  grid-template-columns: 90px 1fr auto auto;
+  gap: 18px;
+  align-items: center;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--line);
+}
+@media (max-width: 560px) {
+  .cart-line { grid-template-columns: 64px 1fr; grid-template-areas: "img name" "img qty" "img remove"; row-gap: 8px; }
+}
+.cart-line-media {
+  width: 90px; height: 90px;
+  border-radius: var(--radius);
+  overflow: hidden;
+}
+.cart-line-media img { width: 100%; height: 100%; object-fit: cover; }
+.cart-line-name { font-weight: 600; }
+.cart-line-price { font-family: 'IBM Plex Mono', monospace; font-size: 0.88rem; color: var(--charcoal-soft); margin-top: 4px; }
+.remove-link {
+  font-size: 0.82rem;
+  color: var(--charcoal-soft);
+  text-decoration: underline;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.remove-link:hover { color: var(--mustard-deep); }
+
+.summary-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+  padding: 28px;
+  position: sticky;
+  top: 100px;
+}
+.summary-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  font-size: 0.95rem;
+}
+.summary-total {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 700;
+  font-size: 1.15rem;
+  padding-top: 16px;
+  margin-top: 4px;
+  border-top: 1px solid var(--line);
+  font-family: 'IBM Plex Mono', monospace;
+}
+.empty-state {
+  text-align: center;
+  padding: 64px 24px;
+  background: var(--white);
+  border-radius: var(--radius-lg);
+}
+
+/* ---------- Checkout ---------- */
+
+.checkout-layout {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .checkout-layout { grid-template-columns: 1fr; }
+}
+.checkout-step-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+.checkout-step-title .num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+.order-line {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+  color: var(--charcoal-soft);
+}
+
+.confirmation {
+  text-align: center;
+  padding: 80px 24px;
+}
+.confirmation .check-badge {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: var(--forest);
+  color: var(--cream);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 24px;
+  font-size: 2rem;
+}
+.order-id {
+  font-family: 'IBM Plex Mono', monospace;
+  background: var(--mustard-tint);
+  color: var(--mustard-deep);
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  margin-top: 12px;
+}
+
+/* ---------- Contact page ---------- */
+
+.contact-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 56px;
+}
+@media (max-width: 860px) {
+  .contact-layout { grid-template-columns: 1fr; }
+}
+.contact-info-item {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+.contact-info-item .icon {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--mustard-tint);
+  color: var(--mustard-deep);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.contact-info-item h4 { margin: 0 0 4px; font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 700; }
+.contact-info-item p { margin: 0; }
+
+/* ---------- Generic page header ---------- */
+
+.page-header {
+  padding: 56px 0 24px;
+  text-align: left;
+}
+.page-header p { max-width: 60ch; }
+
+.breadcrumb {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 0.78rem;
+  color: var(--charcoal-soft);
+  margin-bottom: 16px;
+}
+.breadcrumb a:hover { color: var(--mustard-deep); }
+
+/* ---------- Toast ---------- */
+
+.toast {
+  position: fixed;
+  bottom: 28px;
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  background: var(--forest);
+  color: var(--cream);
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+  z-index: 999;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+}
+.toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ---------- Section helpers ---------- */
+
+.section-alt { background: var(--cream-alt); }
+.text-center { text-align: center; }
+.narrow { max-width: 680px; margin: 0 auto; }
+.mt-0 { margin-top: 0; }
+.two-col-cta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+/* ---------- SPA page routing ---------- */
+.page { display: none; }
+.page.active { display: block; }
+
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="#home" class="wordmark wordmark-logo"><img src="data:image/png;base64,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" alt="TribalMillet" /></a>
+    <nav class="main-nav">
+      <a href="#home" data-route="home">Home</a>
+      <a href="#about" data-route="about">About Us</a>
+      <a href="#products" data-route="products">Products</a>
+      <a href="#register" data-route="register">Farmer Registration</a>
+      <a href="#contact" data-route="contact">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <a href="#cart" class="cart-link" data-route="cart">Cart <span class="cart-badge" data-cart-count>0</span></a>
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ============ HOME ============ -->
+  <div class="page" id="page-home">
+    <section class="section-tight">
+      <div class="container hero">
+        <div>
+          <span class="eyebrow">Millets, sourced honestly</span>
+          <h1>Nourishing people.<br>Uplifting tribes.<br>Restoring seeds.</h1>
+          <p class="hero-tagline">Grain by grain, back to where good food began.</p>
+          <p>TribalMillet works directly with tribal farmer collectives across India to bring whole millets and millet foods to your table — at a fair price for the people who grow them.</p>
+          <div class="hero-actions">
+            <a href="#products" class="btn btn-mustard">Shop Products</a>
+            <a href="#about" class="btn btn-outline">Our Story</a>
+          </div>
+          <div class="stat-row">
+            <div><span class="stat-num">27</span><span class="stat-label">Millet products</span></div>
+            <div><span class="stat-num">100%</span><span class="stat-label">Direct farmer sourcing</span></div>
+            <div><span class="stat-num">0</span><span class="stat-label">Refined sugar added</span></div>
+          </div>
+        </div>
+        <div class="hero-media">
+          <img src="https://images.unsplash.com/photo-1602018342965-6dd19657e145?auto=format&fit=crop&w=1200&q=80" alt="Golden millet field ready for harvest">
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <span class="eyebrow">What we stand for</span>
+        <h2>Three commitments, one supply chain</h2>
+        <div class="ledger">
+          <div class="ledger-row">
+            <div class="ledger-mark">01 — People</div>
+            <div><h3>Nourishing people</h3><p>Millets are naturally gluten-free and rich in fibre — a wholesome, everyday alternative to polished grains.</p></div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-mark">02 — Tribes</div>
+            <div><h3>Uplifting tribes</h3><p>Every purchase pays tribal farming communities directly and fairly, supporting livelihoods that have grown this grain for generations.</p></div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-mark">03 — Seeds</div>
+            <div><h3>Restoring seeds</h3><p>We help conserve indigenous millet varieties — protecting biodiversity and climate-resilient farming for the years ahead.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container">
+        <div class="two-col-cta">
+          <div><span class="eyebrow">From the harvest</span><h2 class="mt-0">Featured products</h2></div>
+          <a href="#products" class="btn btn-outline">View all products</a>
+        </div>
+        <div class="product-grid" id="featured-products"></div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container feature-row">
+        <div class="feature-media">
+          <img src="https://images.unsplash.com/photo-1768729339998-909158957162?auto=format&fit=crop&w=1200&q=80" alt="Millet flour and grains on a leaf">
+        </div>
+        <div>
+          <span class="eyebrow">Our story</span>
+          <h2>Food that nourished generations, before it nourished us</h2>
+          <p>For centuries, tribal farming communities have grown millets on land where few other crops survive. As diets shifted toward polished rice and wheat, that knowledge — and the livelihoods behind it — began to fade.</p>
+          <p>TribalMillet works directly with these communities: fair prices, transparent sourcing, and a supply chain built around the farmer's wellbeing.</p>
+          <a href="#about" class="btn btn-primary">Read our full story</a>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <div class="page" id="page-about">
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Our story</span>
+        <h1>Food that nourished generations, before it nourished us</h1>
+        <p>TribalMillet began with a simple belief: the food that nourishes us best is the food that has nourished generations before us.</p>
+      </div>
+    </section>
+
+    <section class="section-tight">
+      <div class="container">
+        <div class="feature-row">
+          <div class="feature-media">
+            <img src="https://images.unsplash.com/photo-1602018342965-6dd19657e145?auto=format&fit=crop&w=1200&q=80" alt="Millet field at harvest time">
+          </div>
+          <div>
+            <span class="eyebrow">Where it started</span>
+            <h2>A grain built for hard land</h2>
+            <p>For centuries, tribal farming communities across India have grown millets — hardy, nutrient-rich grains suited to dry, marginal land where few other crops survive. Yet as diets shifted toward polished rice and wheat, millet farming declined, and with it, a source of livelihood for many tribal families.</p>
+            <p>TribalMillet was founded to reverse that story.</p>
+          </div>
+        </div>
+        <div class="feature-row reverse">
+          <div class="feature-media">
+            <img src="https://images.unsplash.com/photo-1768729339998-909158957162?auto=format&fit=crop&w=1200&q=80" alt="Millet grains and flour">
+          </div>
+          <div>
+            <span class="eyebrow">How we work</span>
+            <h2>A short, honest supply chain</h2>
+            <p>We work directly with tribal farmer collectives, paying fair prices for their harvest and helping restore traditional millet farming as a sustainable, dignified livelihood.</p>
+            <p>Every product we sell — from whole grains to ready-to-cook mixes — is sourced this way: transparently, respectfully, and with the farmer's wellbeing built into the price. This is more than a food brand; it's a small, honest supply chain connecting your kitchen to the people who grow what you eat.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-alt">
+      <div class="container">
+        <span class="eyebrow">Our commitments</span>
+        <h2>What every purchase supports</h2>
+        <div class="ledger">
+          <div class="ledger-row">
+            <div class="ledger-mark">01 — People</div>
+            <div><h3>Nourishing people</h3><p>Millets are naturally gluten-free, high in fibre, and rich in essential minerals — a wholesome alternative for modern diets.</p></div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-mark">02 — Tribes</div>
+            <div><h3>Uplifting tribes</h3><p>Every purchase supports tribal farming communities directly, creating fair income and preserving traditional agricultural knowledge.</p></div>
+          </div>
+          <div class="ledger-row">
+            <div class="ledger-mark">03 — Seeds</div>
+            <div><h3>Restoring seeds</h3><p>We help conserve indigenous millet varieties, protecting biodiversity and climate-resilient farming for the future.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="text-center">
+      <div class="container narrow">
+        <h2>Ready to taste it for yourself?</h2>
+        <p>Every product in our shop is sourced the same way — directly, fairly, and traceably.</p>
+        <a href="#products" class="btn btn-mustard">Shop Products</a>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PRODUCTS ============ -->
+  <div class="page" id="page-products">
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">The shop</span>
+        <h1>Our Products</h1>
+        <p>Whole grains, flours, snacks, and ready-to-cook mixes — every product sourced directly from tribal farmer collectives.</p>
+      </div>
+    </section>
+    <section class="section-tight">
+      <div class="container">
+        <div class="product-grid" id="all-products"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ PRODUCT DETAIL ============ -->
+  <div class="page" id="page-product">
+    <section class="section-tight">
+      <div class="container">
+        <div class="breadcrumb"><a href="#products">Products</a> / <span id="crumb-name">Product</span></div>
+        <div class="product-detail" id="product-root"></div>
+      </div>
+    </section>
+    <section class="section-alt">
+      <div class="container">
+        <div class="feature-row" style="align-items:start;">
+          <div>
+            <span class="eyebrow">Customer reviews</span>
+            <h2>What buyers are saying</h2>
+            <div id="reviews-list"></div>
+          </div>
+          <div>
+            <div class="review-form">
+              <h3>Write a review</h3>
+              <p style="font-size:0.85rem;">Bought this product? Share your experience with other customers.</p>
+              <div class="form-success" id="review-success">Thanks — your review has been posted below.</div>
+              <form id="review-form">
+                <div class="form-field">
+                  <label>Your rating</label>
+                  <div class="star-picker" id="star-picker">
+                    <button type="button" data-val="1">★</button>
+                    <button type="button" data-val="2">★</button>
+                    <button type="button" data-val="3">★</button>
+                    <button type="button" data-val="4">★</button>
+                    <button type="button" data-val="5">★</button>
+                  </div>
+                </div>
+                <div class="form-field"><label for="rv-name">Name</label><input type="text" id="rv-name" required placeholder="Your name"></div>
+                <div class="form-field"><label for="rv-comment">Your review</label><textarea id="rv-comment" rows="4" required placeholder="Tell others what you liked (or didn't)"></textarea></div>
+                <button type="submit" class="btn btn-primary btn-block">Submit Review</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <div class="container">
+        <div class="two-col-cta"><h2 class="mt-0">You may also like</h2></div>
+        <div class="product-grid" id="related-products"></div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CART ============ -->
+  <div class="page" id="page-cart">
+    <section class="page-header">
+      <div class="container"><span class="eyebrow">Your bag</span><h1>Shopping Cart</h1></div>
+    </section>
+    <section class="section-tight">
+      <div class="container" id="cart-container"></div>
+    </section>
+  </div>
+
+  <!-- ============ CHECKOUT ============ -->
+  <div class="page" id="page-checkout">
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Almost there</span>
+        <h1>Checkout</h1>
+        <p style="font-size:0.85rem; max-width:60ch;">Almost done — review your order and complete checkout below.</p>
+      </div>
+    </section>
+    <section class="section-tight">
+      <div class="container" id="checkout-container"></div>
+    </section>
+  </div>
+
+  <!-- ============ FARMER REGISTRATION ============ -->
+  <div class="page" id="page-register">
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Join our network</span>
+        <h1>Tribal Farmer Registration</h1>
+        <p>If you're a tribal farmer or part of a farming collective growing millets, register with us. Our procurement team reviews every application and reaches out directly to discuss sourcing, fair pricing, and onboarding.</p>
+      </div>
+    </section>
+    <section class="section-tight">
+      <div class="container contact-layout">
+        <div>
+          <div class="contact-info-item">
+            <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+            <div><h4>Fair, transparent pricing</h4><p>We pay above local mandi rates and settle payments directly to farmers, with no middlemen.</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div><h4>Simple onboarding</h4><p>Our field team verifies your details and visits your village to complete registration and quality checks.</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M12 18h.01"/></svg></div>
+            <div><h4>Need help registering?</h4><p>Call or WhatsApp our farmer helpline at <a href="https://wa.me/919876543210" target="_blank" rel="noopener">98765 43210</a>, available in Hindi and regional languages.</p></div>
+          </div>
+        </div>
+        <div class="review-form">
+          <h3>Farmer registration form</h3>
+          <div class="form-success" id="register-success">Thank you for registering — our team will contact you within 3–5 working days.</div>
+          <form id="register-form">
+            <div class="form-row">
+              <div class="form-field"><label for="r-name">Full name</label><input type="text" id="r-name" required></div>
+              <div class="form-field"><label for="r-phone">Phone number</label><input type="tel" id="r-phone" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="r-community">Tribal community / group name</label><input type="text" id="r-community" placeholder="e.g. Gond, Baiga, or SHG/FPO name" required></div>
+              <div class="form-field"><label for="r-experience">Years of farming experience</label><input type="number" id="r-experience" min="0" placeholder="e.g. 8"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="r-village">Village</label><input type="text" id="r-village" required></div>
+              <div class="form-field"><label for="r-district">District</label><input type="text" id="r-district" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="r-state">State</label><input type="text" id="r-state" required></div>
+              <div class="form-field"><label for="r-land">Land under millet cultivation</label><input type="text" id="r-land" placeholder="e.g. 2 acres"></div>
+            </div>
+            <div class="form-field">
+              <label>Primary millet(s) grown</label>
+              <div class="millet-check-group" id="r-millet-group">
+                <input type="checkbox" id="r-millet-foxtail" name="r-millet" value="Foxtail Millet">
+                <label for="r-millet-foxtail"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Foxtail Millet</label>
+
+                <input type="checkbox" id="r-millet-pearl" name="r-millet" value="Pearl Millet (Bajra)">
+                <label for="r-millet-pearl"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Pearl Millet (Bajra)</label>
+
+                <input type="checkbox" id="r-millet-finger" name="r-millet" value="Finger Millet (Ragi)">
+                <label for="r-millet-finger"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Finger Millet (Ragi)</label>
+
+                <input type="checkbox" id="r-millet-sorghum" name="r-millet" value="Sorghum (Jowar)">
+                <label for="r-millet-sorghum"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Sorghum (Jowar)</label>
+
+                <input type="checkbox" id="r-millet-little" name="r-millet" value="Little Millet">
+                <label for="r-millet-little"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Little Millet</label>
+
+                <input type="checkbox" id="r-millet-kodo" name="r-millet" value="Kodo Millet">
+                <label for="r-millet-kodo"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Kodo Millet</label>
+
+                <input type="checkbox" id="r-millet-barnyard" name="r-millet" value="Barnyard Millet">
+                <label for="r-millet-barnyard"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Barnyard Millet</label>
+
+                <input type="checkbox" id="r-millet-proso" name="r-millet" value="Proso Millet">
+                <label for="r-millet-proso"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Proso Millet</label>
+
+                <input type="checkbox" id="r-millet-other" name="r-millet" value="Other">
+                <label for="r-millet-other"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Other</label>
+              </div>
+              <p class="form-hint">Select all that apply.</p>
+            </div>
+            <div class="form-field"><label for="r-notes">Anything else you'd like us to know</label><textarea id="r-notes" rows="4" placeholder="Optional — certifications, current buyers, storage capacity, etc."></textarea></div>
+            <button type="submit" class="btn btn-mustard btn-block">Submit Registration</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CONTACT ============ -->
+  <div class="page" id="page-contact">
+    <section class="page-header">
+      <div class="container">
+        <span class="eyebrow">Get in touch</span>
+        <h1>Contact Us</h1>
+        <p>If you're a tribal farmer or part of a farming collective growing millets, register with us below. Our procurement team reviews every application and reaches out directly to discuss sourcing, fair pricing, and onboarding.</p>
+      </div>
+    </section>
+    <section class="section-tight">
+      <div class="container contact-layout">
+        <div>
+          <div class="contact-info-item">
+            <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg></div>
+            <div><h4>Fair, transparent pricing</h4><p>We pay above local mandi rates and settle payments directly to farmers, with no middlemen.</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
+            <div><h4>Simple onboarding</h4><p>Our field team verifies your details and visits your village to complete registration and quality checks.</p></div>
+          </div>
+          <div class="contact-info-item">
+            <div class="icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 2H7a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2z"/><path d="M12 18h.01"/></svg></div>
+            <div><h4>Need help registering?</h4><p>Call or WhatsApp our farmer helpline at <a href="https://wa.me/919876543210" target="_blank" rel="noopener">98765 43210</a>, available in Hindi and regional languages.</p></div>
+          </div>
+        </div>
+        <div class="review-form">
+          <h3>Farmer registration form</h3>
+          <div class="form-success" id="contact-success">Thank you for registering — our team will contact you within 3–5 working days.</div>
+          <form id="contact-form">
+            <div class="form-row">
+              <div class="form-field"><label for="cf-name">Full name</label><input type="text" id="cf-name" required></div>
+              <div class="form-field"><label for="cf-phone">Phone number</label><input type="tel" id="cf-phone" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="cf-community">Tribal community / group name</label><input type="text" id="cf-community" placeholder="e.g. Gond, Baiga, or SHG/FPO name" required></div>
+              <div class="form-field"><label for="cf-experience">Years of farming experience</label><input type="number" id="cf-experience" min="0" placeholder="e.g. 8"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="cf-village">Village</label><input type="text" id="cf-village" required></div>
+              <div class="form-field"><label for="cf-district">District</label><input type="text" id="cf-district" required></div>
+            </div>
+            <div class="form-row">
+              <div class="form-field"><label for="cf-state">State</label><input type="text" id="cf-state" required></div>
+              <div class="form-field"><label for="cf-land">Land under millet cultivation</label><input type="text" id="cf-land" placeholder="e.g. 2 acres"></div>
+            </div>
+            <div class="form-field">
+              <label>Primary millet(s) grown</label>
+              <div class="millet-check-group" id="cf-millet-group">
+                <input type="checkbox" id="cf-millet-foxtail" name="cf-millet" value="Foxtail Millet">
+                <label for="cf-millet-foxtail"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Foxtail Millet</label>
+
+                <input type="checkbox" id="cf-millet-pearl" name="cf-millet" value="Pearl Millet (Bajra)">
+                <label for="cf-millet-pearl"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Pearl Millet (Bajra)</label>
+
+                <input type="checkbox" id="cf-millet-finger" name="cf-millet" value="Finger Millet (Ragi)">
+                <label for="cf-millet-finger"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Finger Millet (Ragi)</label>
+
+                <input type="checkbox" id="cf-millet-sorghum" name="cf-millet" value="Sorghum (Jowar)">
+                <label for="cf-millet-sorghum"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Sorghum (Jowar)</label>
+
+                <input type="checkbox" id="cf-millet-little" name="cf-millet" value="Little Millet">
+                <label for="cf-millet-little"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Little Millet</label>
+
+                <input type="checkbox" id="cf-millet-kodo" name="cf-millet" value="Kodo Millet">
+                <label for="cf-millet-kodo"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Kodo Millet</label>
+
+                <input type="checkbox" id="cf-millet-barnyard" name="cf-millet" value="Barnyard Millet">
+                <label for="cf-millet-barnyard"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Barnyard Millet</label>
+
+                <input type="checkbox" id="cf-millet-proso" name="cf-millet" value="Proso Millet">
+                <label for="cf-millet-proso"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Proso Millet</label>
+
+                <input type="checkbox" id="cf-millet-other" name="cf-millet" value="Other">
+                <label for="cf-millet-other"><span class="tick"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"/></svg></span>Other</label>
+              </div>
+              <p class="form-hint">Select all that apply.</p>
+            </div>
+            <div class="form-field"><label for="cf-notes">Anything else you'd like us to know</label><textarea id="cf-notes" rows="4" placeholder="Optional — certifications, current buyers, storage capacity, etc."></textarea></div>
+            <button type="submit" class="btn btn-mustard btn-block">Submit Registration</button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div>
+        <div class="wordmark wordmark-logo wordmark-footer"><img src="data:image/png;base64,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" alt="TribalMillet" /></div>
+        <p class="footer-tagline">Nourishing people. Uplifting tribes. Restoring seeds.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#products">Products</a></li>
+          <li><a href="#register">Farmer Registration</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li>Customer care: 96505 60277</li>
+          <li>Farmer helpline: 98765 43210</li>
+          <li>globalexpressgroup@gmail.com</li>
+          <li>Mon–Sat, 9:30 AM – 6:30 PM IST</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 TribalMillet. All rights reserved.</span>
+      <span>13, Institutional Area, Lodhi Road, New Delhi 110 003</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ============================================================
+   TribalMillet — single-file app
+   Product data, cart/review storage (localStorage), hash router,
+   and render functions for every "page".
+   ============================================================ */
+
+const PRODUCTS = [
+  {
+    id: "foxtail-millet-flour",
+    name: "Foxtail Millet Flour",
+    category: "Everyday Staples",
+    price: 180,
+    unit: "500g pack",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1714842981153-ffeaf74e7a1a?auto=format&fit=crop&w=1200&q=80",
+    badge: "Stone-ground, unrefined",
+    short: "Stone-ground foxtail millet flour for soft rotis and everyday cooking.",
+    description: "Milled slowly on traditional stone wheels to protect the grain's natural fibre and nutrients, this foxtail millet flour swaps in for wheat flour in rotis, dosas, and baking. It has a light, slightly nutty taste and keeps rotis soft even after they cool.",
+    highlights: ["Naturally gluten-free", "Stone-ground to preserve fibre", "Sourced from tribal farmer collectives in Central India"]
+  },
+  {
+    id: "millet-dosa-upma-mix",
+    name: "Instant Millet Dosa & Upma Mix",
+    category: "Convenience Foods",
+    price: 220,
+    unit: "400g pack",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1519996409144-56c88c9aa612?auto=format&fit=crop&w=1200&q=80",
+    badge: "Ready in under 10 minutes",
+    short: "Ready in under 10 minutes — a wholesome dosa and upma mix for busy mornings.",
+    description: "A pre-blended mix of foxtail and little millet, lightly roasted and ground with a few everyday spices. Just add water and rest for a few minutes for dosa batter, or follow the pack instructions for a quick upma. Made for households that want a nutritious meal without the prep time.",
+    highlights: ["Ready in under 10 minutes", "No preservatives or added colour", "Makes approx. 8–10 dosas per pack"]
+  },
+  {
+    id: "millet-cookies",
+    name: "Millet Cookies",
+    category: "Snacks",
+    price: 150,
+    unit: "200g pack",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1676448672121-ce09fbbf69e5?auto=format&fit=crop&w=1200&q=80",
+    badge: "Sweetened with jaggery",
+    short: "Lightly sweet, wholesome cookies made with millet flour and jaggery.",
+    description: "Baked in small batches with millet flour, a touch of ghee, and jaggery instead of refined sugar. A simple, honest snack for tea-time or a lunchbox — crisp on the outside, short and crumbly within.",
+    highlights: ["Sweetened with jaggery, not refined sugar", "No maida (refined flour)", "Baked in small batches"]
+  },
+  {
+    id: "pearl-millet-grains",
+    name: "Pearl Millet Grains",
+    category: "Whole Grains",
+    price: 160,
+    unit: "1kg pack",
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1621457233274-27f45eb99319?auto=format&fit=crop&w=1200&q=80",
+    badge: "Directly sourced from tribal farms",
+    short: "Whole pearl millet (bajra), cleaned and sourced directly from tribal farmers.",
+    description: "Whole bajra grains, sun-cleaned and sorted by hand before packing. Cook it like rice, grind it fresh at home for flour, or use it in khichdi — a versatile grain that has fed households across India for generations.",
+    highlights: ["Hand-sorted, sun-cleaned", "No polishing — full grain, full fibre", "Traceable to source farms"]
+  },
+  {
+    id: "millet-energy-bars",
+    name: "Millet Energy Bars",
+    category: "Snacks",
+    price: 200,
+    unit: "Pack of 6",
+    rating: 4.4,
+    image: "https://images.unsplash.com/photo-1633360821154-1935fb5671e6?auto=format&fit=crop&w=1200&q=80",
+    badge: "On-the-go nutrition",
+    short: "On-the-go bars with millet, nuts, and honey — no refined sugar.",
+    description: "A quick bite for busy days, made by binding puffed millet with nuts and honey and pressing into bars. No refined sugar, no artificial flavouring — just something to keep you going between meals.",
+    highlights: ["Bound with honey, not syrup or refined sugar", "Good source of fibre and protein", "Individually wrapped for easy carrying"]
+  },
+  {
+    id: "little-millet-rice",
+    name: "Little Millet Rice",
+    category: "Whole Grains",
+    price: 170,
+    unit: "1kg pack",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1505252784141-72a7a8073787?auto=format&fit=crop&w=1200&q=80",
+    badge: "Light, easy-to-digest grain",
+    short: "A light, easy-to-digest millet that cooks up like rice in half the time.",
+    description: "Little millet (samai) has a mild taste and a soft, fluffy texture once cooked, making it an easy swap for white rice in everyday meals. Hand-cleaned and sun-dried by tribal farming families before packing, with nothing added or taken away.",
+    highlights: ["Cooks in under 15 minutes", "Mild flavour, easy on digestion", "Hand-cleaned, unpolished grain"]
+  },
+  {
+    id: "kodo-millet-grains",
+    name: "Kodo Millet Grains",
+    category: "Whole Grains",
+    price: 175,
+    unit: "1kg pack",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1621470626424-5c3f5fee3269?auto=format&fit=crop&w=1200&q=80",
+    badge: "High in fibre",
+    short: "A hardy, high-fibre millet traditionally grown on tribal dryland farms.",
+    description: "Kodo millet grows well on rain-fed, marginal land, which is why tribal farmers in Central India have cultivated it for generations. The grain has a slightly earthy flavour and holds its shape well, making it suited to pulao, khichdi, and salads.",
+    highlights: ["Grown on rain-fed tribal farmland", "High in dietary fibre", "Holds shape well when cooked"]
+  },
+  {
+    id: "barnyard-millet",
+    name: "Barnyard Millet",
+    category: "Whole Grains",
+    price: 190,
+    unit: "1kg pack",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1620827792322-5960fe216618?auto=format&fit=crop&w=1200&q=80",
+    badge: "Low glycemic index",
+    short: "A quick-cooking millet often used as a lighter alternative to rice.",
+    description: "Barnyard millet (sanwa) has a naturally low glycemic index and a delicate texture similar to broken rice. It's commonly used for khichdi, upma, and fasting-day meals, and cooks quickly with no soaking required.",
+    highlights: ["Naturally low glycemic index", "No soaking required", "Traditionally used for fasting-day meals"]
+  },
+  {
+    id: "finger-millet-ragi-flour",
+    name: "Finger Millet (Ragi) Flour",
+    category: "Everyday Staples",
+    price: 165,
+    unit: "500g pack",
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1768729339998-909158957162?auto=format&fit=crop&w=1200&q=80",
+    badge: "Rich in calcium",
+    short: "Stone-ground ragi flour, rich in calcium, for rotis, porridge, and baking.",
+    description: "Ragi is one of the richest plant sources of calcium, and this flour is milled the traditional way to keep that nutrition intact. Use it for soft rotis, a warm porridge for children and elders, or in place of a portion of maida when baking.",
+    highlights: ["Rich in calcium and iron", "Stone-ground, unrefined", "Suitable for infants (from 8 months) and elders"]
+  },
+  {
+    id: "sorghum-jowar-flour",
+    name: "Sorghum (Jowar) Flour",
+    category: "Everyday Staples",
+    price: 155,
+    unit: "500g pack",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1627735483792-233bf632619b?auto=format&fit=crop&w=1200&q=80",
+    badge: "Everyday roti flour",
+    short: "A soft, mild-tasting jowar flour that makes classic bhakri and rotis.",
+    description: "Ground fresh in small batches, this jowar flour has the mild, slightly sweet taste that makes it a staple across many Indian households. Best used within a few weeks of opening for the freshest bhakri or roti.",
+    highlights: ["Freshly milled in small batches", "Naturally gluten-free", "Best used within 4–6 weeks of opening"]
+  },
+  {
+    id: "millet-idli-mix",
+    name: "Instant Millet Idli Mix",
+    category: "Convenience Foods",
+    price: 210,
+    unit: "400g pack",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1641301553499-9a0ff924fcb5?auto=format&fit=crop&w=1200&q=80",
+    badge: "No fermentation wait",
+    short: "Soft, fluffy idlis without the usual overnight fermentation wait.",
+    description: "A pre-fermented blend of little millet and urad dal that's ready to steam as soon as you mix in water — no waiting overnight for batter to rise. Makes soft, mildly tangy idlis for a quick breakfast any day of the week.",
+    highlights: ["No overnight fermentation needed", "Makes approx. 12–14 idlis per pack", "No preservatives added"]
+  },
+  {
+    id: "millet-khichdi-mix",
+    name: "Millet Khichdi Mix",
+    category: "Convenience Foods",
+    price: 195,
+    unit: "350g pack",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1549590143-d5855148a9d5?auto=format&fit=crop&w=1200&q=80",
+    badge: "One-pot comfort meal",
+    short: "A pre-mixed blend of millets, dal, and mild spices for a one-pot meal.",
+    description: "A comforting blend of foxtail millet, moong dal, and a few everyday spices — just pressure-cook with water and a spoon of ghee. Designed as an easy, wholesome meal for days when you don't want to plan a full menu.",
+    highlights: ["Just add water and pressure-cook", "Balanced blend of grain and dal", "No added preservatives or colour"]
+  },
+  {
+    id: "millet-porridge-mix",
+    name: "Multi-Millet Porridge Mix",
+    category: "Convenience Foods",
+    price: 230,
+    unit: "500g pack",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1651241587503-a874db54a1a7?auto=format&fit=crop&w=1200&q=80",
+    badge: "A warm start to the day",
+    short: "A roasted blend of five millets for a warm, nourishing breakfast porridge.",
+    description: "Five different millets, dry-roasted and coarsely ground, come together in this porridge mix. Simmer with milk or water and a little jaggery for a warm breakfast that keeps you full through the morning — a favourite for both children and elders.",
+    highlights: ["Blend of five different millets", "Dry-roasted for a deeper flavour", "Ready in about 10 minutes on the stove"]
+  },
+  {
+    id: "millet-laddoo",
+    name: "Millet Laddoo",
+    category: "Snacks",
+    price: 240,
+    unit: "300g pack (approx. 10 pcs)",
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1554886729-fe8d4499a108?auto=format&fit=crop&w=1200&q=80",
+    badge: "Hand-rolled in small batches",
+    short: "Hand-rolled laddoos made with roasted millet, jaggery, and ghee.",
+    description: "Made the way grandmothers make them — roasted millet flour, pure ghee, and jaggery, hand-rolled into laddoos in small batches by women from tribal self-help groups. A festive-tasting sweet that's part of everyday snacking too.",
+    highlights: ["Hand-rolled by tribal women's self-help groups", "Sweetened only with jaggery", "No refined sugar or preservatives"]
+  },
+  {
+    id: "roasted-millet-puffs",
+    name: "Roasted Millet Puffs",
+    category: "Snacks",
+    price: 130,
+    unit: "150g pack",
+    rating: 4.4,
+    image: "https://images.unsplash.com/photo-1622542086073-dcdc3350cc2b?auto=format&fit=crop&w=1200&q=80",
+    badge: "Light, crunchy, no oil",
+    short: "Air-puffed millet, lightly seasoned — a light snack with no added oil.",
+    description: "Whole millet grains are air-puffed rather than fried, then tossed with a light seasoning of rock salt and a hint of spice. A crunchy snack on its own, or use it as a base for a quick bhel at home.",
+    highlights: ["Air-puffed, not fried", "Zero trans fat", "Also works as a bhel or chivda base"]
+  },
+  {
+    id: "millet-malt-drink-mix",
+    name: "Millet Malt Drink Mix",
+    category: "Beverages",
+    price: 260,
+    unit: "400g jar",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1610725664285-7c57e6eeac3f?auto=format&fit=crop&w=1200&q=80",
+    badge: "Malted, not just mixed",
+    short: "A malted millet and ragi drink mix — stir into warm milk for a comforting cup.",
+    description: "Sprouted and malted ragi and finger millet are roasted and ground into a fine powder that dissolves easily in warm milk. A homely, naturally sweetened alternative to commercial malt drinks, with no added preservatives.",
+    highlights: ["Made from sprouted, malted millet", "Naturally sweetened with jaggery", "Dissolves easily in warm or cold milk"]
+  },
+  {
+    id: "ragi-baby-cereal",
+    name: "Ragi Baby Cereal",
+    category: "Baby & Kids",
+    price: 280,
+    unit: "300g pack",
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1595801106239-faefa2cdcf75?auto=format&fit=crop&w=1200&q=80",
+    badge: "For 8 months and up",
+    short: "A finely milled, easy-to-digest ragi cereal for babies starting solids.",
+    description: "Sprouted, sun-dried, and finely milled ragi, made simple enough to cook into a smooth porridge for babies from around 8 months. No added sugar, salt, or flavouring — just one clean ingredient, sourced from farms we know by name.",
+    highlights: ["Single ingredient — sprouted ragi only", "No added sugar or salt", "Recommended from 8 months, with a paediatrician's guidance"]
+  },
+  {
+    id: "proso-millet-grains",
+    name: "Proso Millet Grains",
+    category: "Whole Grains",
+    price: 165,
+    unit: "1kg pack",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1602018342965-6dd19657e145?auto=format&fit=crop&w=1200&q=80",
+    badge: "Quick-cooking, mild flavour",
+    short: "A small, round millet with a mild flavour that cooks quickly like couscous.",
+    description: "Proso millet (variously known as cheena or barri) has a soft, slightly sweet character once cooked and works well as a base for pulao, salads, or a simple side in place of rice. Hand-cleaned and sun-dried by tribal farming families before packing.",
+    highlights: ["Cooks in about 12 minutes", "Mild, slightly sweet flavour", "Hand-cleaned, unpolished grain"]
+  },
+  {
+    id: "amaranth-millet-mix",
+    name: "Amaranth & Millet Mix",
+    category: "Whole Grains",
+    price: 210,
+    unit: "750g pack",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1621470626764-0e8c9303800a?auto=format&fit=crop&w=1200&q=80",
+    badge: "Protein-rich blend",
+    short: "A hand-blended mix of amaranth and little millet for a protein-rich everyday grain.",
+    description: "Amaranth grain is blended with little millet in a ratio tuned for both texture and nutrition, giving you a protein-rich base for khichdi, porridge, or pulao. Both grains are sourced from the same tribal farmer collectives and blended fresh before packing.",
+    highlights: ["Higher protein than rice alone", "Naturally gluten-free", "Sourced from a single farmer collective"]
+  },
+  {
+    id: "millet-multigrain-atta",
+    name: "Millet Multigrain Atta",
+    category: "Everyday Staples",
+    price: 195,
+    unit: "1kg pack",
+    rating: 4.7,
+    image: "https://images.unsplash.com/photo-1533782654613-826a072dd6f3?auto=format&fit=crop&w=1200&q=80",
+    badge: "5 grains, one flour",
+    short: "A stone-ground blend of five millets and wheat for softer, more nutritious rotis.",
+    description: "This atta blends foxtail, little, and finger millet with whole wheat, stone-ground together so the flavours and nutrition are evenly distributed through every roti. A gentle way to bring more millet into a household that isn't ready to go fully gluten-free.",
+    highlights: ["Blend of five grains including wheat", "Stone-ground for even texture", "A gentle first step into millet cooking"]
+  },
+  {
+    id: "millet-vermicelli",
+    name: "Millet Vermicelli",
+    category: "Convenience Foods",
+    price: 140,
+    unit: "300g pack",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1621470626377-dd2757ae6216?auto=format&fit=crop&w=1200&q=80",
+    badge: "Great for upma & kheer",
+    short: "Thin millet vermicelli that cooks in minutes for a savoury upma or sweet kheer.",
+    description: "Made from a blend of foxtail millet and rice flour, this vermicelli holds its shape well whether you're making a quick vegetable upma or a festive kheer. Pre-steamed for a shorter cooking time than most store-bought vermicelli.",
+    highlights: ["Cooks in under 8 minutes", "Works for both savoury and sweet dishes", "No maida (refined flour)"]
+  },
+  {
+    id: "millet-breakfast-muesli",
+    name: "Millet Breakfast Muesli",
+    category: "Convenience Foods",
+    price: 275,
+    unit: "500g pack",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1601875106130-32cf7cd3c713?auto=format&fit=crop&w=1200&q=80",
+    badge: "No refined sugar",
+    short: "Rolled and puffed millets with nuts, seeds, and dried fruit for a no-cook breakfast.",
+    description: "A hearty mix of rolled millet flakes, puffed millet, roasted nuts, seeds, and dried fruit, lightly sweetened with jaggery. Serve cold with milk or yoghurt, or warm it briefly on the stove — a fuss-free breakfast that still feels indulgent.",
+    highlights: ["No refined sugar added", "A good source of fibre and healthy fats", "Ready to eat, no cooking required"]
+  },
+  {
+    id: "millet-chocolate-bites",
+    name: "Millet Chocolate Bites",
+    category: "Snacks",
+    price: 220,
+    unit: "Pack of 8",
+    rating: 4.6,
+    image: "https://images.unsplash.com/photo-1691200435618-2cda2edbd10c?auto=format&fit=crop&w=1200&q=80",
+    badge: "Kids' favourite",
+    short: "Bite-sized millet and dark chocolate snacks — a treat kids ask for again.",
+    description: "Puffed millet is bound with a light coating of dark chocolate and a touch of honey, then pressed into bite-sized pieces. Made to satisfy a chocolate craving while still bringing some whole grain and fibre along with it — a favourite in school lunchboxes.",
+    highlights: ["Made with real dark chocolate", "Individually wrapped bites", "A better-for-you lunchbox treat"]
+  },
+  {
+    id: "millet-namkeen-mixture",
+    name: "Roasted Millet Namkeen Mixture",
+    category: "Snacks",
+    price: 145,
+    unit: "250g pack",
+    rating: 4.5,
+    image: "https://images.unsplash.com/photo-1629214831802-bb2a07f9517e?auto=format&fit=crop&w=1200&q=80",
+    badge: "Baked, not fried",
+    short: "A savoury, baked millet namkeen mix for tea-time snacking without the oil.",
+    description: "A crunchy mixture of roasted millet, peanuts, curry leaves, and everyday spices, oven-baked instead of deep-fried. Delivers the crunch and flavour of a classic namkeen mix with a fraction of the oil.",
+    highlights: ["Oven-baked, not deep-fried", "Lightly spiced, not overly salty", "Resealable pack to stay fresh"]
+  },
+  {
+    id: "millet-coffee-substitute",
+    name: "Roasted Millet Coffee Substitute",
+    category: "Beverages",
+    price: 250,
+    unit: "250g jar",
+    rating: 4.3,
+    image: "https://images.unsplash.com/photo-1676448672201-5f5b868c17c7?auto=format&fit=crop&w=1200&q=80",
+    badge: "Caffeine-free",
+    short: "A deep-roasted millet and chicory blend for a caffeine-free, coffee-like brew.",
+    description: "Millet grains are slow-roasted until deeply toasted, then ground fine with a touch of chicory root for body. Brew it like coffee for a warm, roasted-grain drink with no caffeine — a gentler alternative for evenings or for those cutting back.",
+    highlights: ["Naturally caffeine-free", "Deep, roasted flavour", "Brews like filter coffee"]
+  },
+  {
+    id: "ragi-teething-rusks",
+    name: "Ragi Teething Rusks",
+    category: "Baby & Kids",
+    price: 190,
+    unit: "150g pack",
+    rating: 4.8,
+    image: "https://images.unsplash.com/photo-1567042661848-7161ce446f85?auto=format&fit=crop&w=1200&q=80",
+    badge: "For 10 months and up",
+    short: "Firm, dissolvable ragi rusks sized for little hands and early teething.",
+    description: "Baked twice for a firm bite that softens as your baby gnaws on it, these ragi rusks are made with just ragi flour, a touch of ghee, and jaggery. Sized to be easy for little hands to hold, with no added salt or preservatives.",
+    highlights: ["No added salt or preservatives", "Firm texture, softens as baby chews", "Recommended from 10 months, with a paediatrician's guidance"]
+  },
+  {
+    id: "gift-hamper-classic",
+    name: "TribalMillet Classic Gift Hamper",
+    category: "Gift Hampers",
+    price: 950,
+    unit: "Box of 6 products",
+    rating: 4.9,
+    image: "https://images.unsplash.com/photo-1606854428857-5121b55a2661?auto=format&fit=crop&w=1200&q=80",
+    badge: "Curated & gift-boxed",
+    short: "A curated box of six bestsellers, gift-wrapped and ready to send.",
+    description: "A hand-picked selection of six of our most-loved products — a mix of flours, snacks, and a ready-to-cook mix — packed into a printed gift box with a note card. A thoughtful way to introduce someone to millets, and to the farming communities behind them.",
+    highlights: ["Six full-size bestselling products", "Comes gift-boxed with a note card", "A portion of proceeds shared with the featured farmer collective"]
+  }
+];
+
+function formatINR(amount) { return "₹" + amount.toLocaleString("en-IN"); }
+function getProductById(id) { return PRODUCTS.find(p => p.id === id); }
+function renderStars(rating) { const full = Math.round(rating); return "★".repeat(full) + "☆".repeat(5 - full); }
+
+/* ---------- Cart ---------- */
+const CART_KEY = "tm_cart_v1";
+const REVIEWS_KEY = "tm_reviews_v1";
+const SHIPPING = 60;
+
+function readCart() { try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch (e) { return []; } }
+function writeCart(cart) { localStorage.setItem(CART_KEY, JSON.stringify(cart)); updateCartBadge(); }
+function addToCart(id, qty) {
+  qty = qty || 1;
+  const cart = readCart();
+  const existing = cart.find(i => i.id === id);
+  if (existing) existing.qty += qty; else cart.push({ id, qty });
+  writeCart(cart);
+}
+function updateCartQty(id, qty) {
+  let cart = readCart();
+  if (qty <= 0) cart = cart.filter(i => i.id !== id);
+  else { const e = cart.find(i => i.id === id); if (e) e.qty = qty; }
+  writeCart(cart);
+}
+function removeFromCart(id) { writeCart(readCart().filter(i => i.id !== id)); }
+function clearCart() { writeCart([]); }
+function cartCount() { return readCart().reduce((s, i) => s + i.qty, 0); }
+function cartTotal() { return readCart().reduce((s, i) => { const p = getProductById(i.id); return p ? s + p.price * i.qty : s; }, 0); }
+function updateCartBadge() {
+  const count = cartCount();
+  document.querySelectorAll("[data-cart-count]").forEach(b => {
+    b.textContent = count;
+    b.style.display = count > 0 ? "inline-flex" : "none";
+  });
+}
+
+/* ---------- Reviews ---------- */
+function readReviews() { try { return JSON.parse(localStorage.getItem(REVIEWS_KEY)) || {}; } catch (e) { return {}; } }
+function writeReviews(all) { localStorage.setItem(REVIEWS_KEY, JSON.stringify(all)); }
+function getReviews(id) { return readReviews()[id] || []; }
+function addReview(id, review) { const all = readReviews(); if (!all[id]) all[id] = []; all[id].unshift(review); writeReviews(all); }
+
+/* ---------- Toast ---------- */
+function showToast(message) {
+  let toast = document.querySelector(".toast");
+  if (!toast) { toast = document.createElement("div"); toast.className = "toast"; document.body.appendChild(toast); }
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(window._toastTimer);
+  window._toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
+}
+
+/* ---------- Card template ---------- */
+function productCardHTML(p) {
+  return `
+    <div class="product-card">
+      <a href="#product/${p.id}" class="product-card-media"><img src="${p.image}" alt="${p.name}" loading="lazy"></a>
+      <div class="product-card-body">
+        <div class="product-card-cat">${p.category}</div>
+        <h3><a href="#product/${p.id}">${p.name}</a></h3>
+        <div class="rating-row"><span class="stars">${renderStars(p.rating)}</span> ${p.rating}</div>
+        <p>${p.short}</p>
+        <div class="price-row">
+          <span class="price">${formatINR(p.price)}</span>
+          <span class="price-unit">${p.unit}</span>
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-outline" onclick="addToCart('${p.id}',1); showToast('${p.name} added to cart');">Add to Cart</button>
+          <a href="#product/${p.id}" class="btn btn-mustard">Buy Now</a>
+        </div>
+      </div>
+    </div>`;
+}
+
+/* ---------- Page render functions ---------- */
+
+function renderFeatured() {
+  document.getElementById("featured-products").innerHTML = PRODUCTS.slice(0, 6).map(productCardHTML).join("");
+}
+
+function renderAllProducts() {
+  document.getElementById("all-products").innerHTML = PRODUCTS.map(productCardHTML).join("");
+}
+
+let currentReviewProductId = null;
+
+function renderProductDetail(id) {
+  const product = getProductById(id) || PRODUCTS[0];
+  currentReviewProductId = product.id;
+  document.title = product.name + " — TribalMillet";
+  document.getElementById("crumb-name").textContent = product.name;
+
+  document.getElementById("product-root").innerHTML = `
+    <div class="product-detail-media"><img src="${product.image}" alt="${product.name}"></div>
+    <div>
+      <div class="product-card-cat">${product.category}</div>
+      <h1 style="font-size:2rem;">${product.name}</h1>
+      <div class="rating-row"><span class="stars">${renderStars(product.rating)}</span> ${product.rating} rating</div>
+      <div class="feature-badge">${product.badge}</div>
+      <p style="margin-top:20px;">${product.description}</p>
+      <ul class="highlight-list">${product.highlights.map(h => `<li>${h}</li>`).join("")}</ul>
+      <div class="price-row" style="margin-bottom:0;">
+        <span class="price" style="font-size:1.6rem;">${formatINR(product.price)}</span>
+        <span class="price-unit">${product.unit}</span>
+      </div>
+      <div class="detail-actions">
+        <div class="qty-stepper">
+          <button type="button" id="qty-dec">−</button>
+          <input type="text" id="qty-val" value="1" readonly>
+          <button type="button" id="qty-inc">+</button>
+        </div>
+        <button class="btn btn-outline" id="add-cart-btn">Add to Cart</button>
+        <button class="btn btn-mustard" id="buy-now-btn">Buy Now</button>
+      </div>
+    </div>
+  `;
+
+  let qty = 1;
+  const qtyVal = document.getElementById("qty-val");
+  document.getElementById("qty-inc").onclick = () => { qty++; qtyVal.value = qty; };
+  document.getElementById("qty-dec").onclick = () => { if (qty > 1) qty--; qtyVal.value = qty; };
+  document.getElementById("add-cart-btn").onclick = () => { addToCart(product.id, qty); showToast(product.name + " added to cart"); };
+  document.getElementById("buy-now-btn").onclick = () => { addToCart(product.id, qty); navigateTo("checkout"); };
+
+  renderReviewsList(product.id);
+
+  let selectedRating = 0;
+  const starButtons = document.querySelectorAll("#star-picker button");
+  starButtons.forEach(btn => {
+    btn.onclick = () => {
+      selectedRating = parseInt(btn.dataset.val, 10);
+      starButtons.forEach(b => b.classList.toggle("active", parseInt(b.dataset.val, 10) <= selectedRating));
+    };
+  });
+
+  const reviewForm = document.getElementById("review-form");
+  reviewForm.onsubmit = (e) => {
+    e.preventDefault();
+    if (selectedRating === 0) { alert("Please select a star rating."); return; }
+    const name = document.getElementById("rv-name").value.trim();
+    const comment = document.getElementById("rv-comment").value.trim();
+    addReview(currentReviewProductId, {
+      name, comment, rating: selectedRating,
+      date: new Date().toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })
+    });
+    renderReviewsList(currentReviewProductId);
+    reviewForm.reset();
+    starButtons.forEach(b => b.classList.remove("active"));
+    selectedRating = 0;
+    const successMsg = document.getElementById("review-success");
+    successMsg.classList.add("show");
+    setTimeout(() => successMsg.classList.remove("show"), 3000);
+  };
+
+  const related = PRODUCTS.filter(p => p.id !== product.id).slice(0, 3);
+  document.getElementById("related-products").innerHTML = related.map(productCardHTML).join("");
+}
+
+function renderReviewsList(productId) {
+  const list = getReviews(productId);
+  const wrap = document.getElementById("reviews-list");
+  if (list.length === 0) {
+    wrap.innerHTML = `<div class="review-empty">No reviews yet. Be the first to share your experience.</div>`;
+    return;
+  }
+  wrap.innerHTML = list.map(r => `
+    <div class="review-item">
+      <div class="review-head"><span class="review-name">${r.name}</span><span class="review-date">${r.date}</span></div>
+      <div class="stars">${renderStars(r.rating)}</div>
+      <p>${r.comment}</p>
+    </div>
+  `).join("");
+}
+
+function renderCart() {
+  const cart = readCart();
+  const wrap = document.getElementById("cart-container");
+  if (cart.length === 0) {
+    wrap.innerHTML = `
+      <div class="empty-state">
+        <h2>Your cart is empty</h2>
+        <p>Looks like you haven't added anything yet.</p>
+        <a href="#products" class="btn btn-mustard">Browse Products</a>
+      </div>`;
+    return;
+  }
+  const lines = cart.map(item => {
+    const p = getProductById(item.id);
+    if (!p) return "";
+    return `
+      <div class="cart-line">
+        <a href="#product/${p.id}" class="cart-line-media"><img src="${p.image}" alt="${p.name}"></a>
+        <div>
+          <a href="#product/${p.id}" class="cart-line-name">${p.name}</a>
+          <div class="cart-line-price">${formatINR(p.price)} × ${item.qty} = ${formatINR(p.price * item.qty)}</div>
+        </div>
+        <div class="qty-stepper">
+          <button type="button" onclick="changeCartQty('${p.id}', ${item.qty - 1})">−</button>
+          <input type="text" value="${item.qty}" readonly>
+          <button type="button" onclick="changeCartQty('${p.id}', ${item.qty + 1})">+</button>
+        </div>
+        <button class="remove-link" onclick="removeCartItem('${p.id}')">Remove</button>
+      </div>`;
+  }).join("");
+  const subtotal = cartTotal();
+  const total = subtotal + SHIPPING;
+  wrap.innerHTML = `
+    <div class="cart-layout">
+      <div>${lines}</div>
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        <div class="summary-row"><span>Subtotal</span><span>${formatINR(subtotal)}</span></div>
+        <div class="summary-row"><span>Shipping</span><span>${formatINR(SHIPPING)}</span></div>
+        <div class="summary-total"><span>Total</span><span>${formatINR(total)}</span></div>
+        <a href="#checkout" class="btn btn-mustard btn-block" style="margin-top:20px;">Proceed to Checkout</a>
+        <a href="#products" class="btn btn-outline btn-block" style="margin-top:12px;">Continue Shopping</a>
+      </div>
+    </div>`;
+}
+function changeCartQty(id, qty) { updateCartQty(id, qty); renderCart(); }
+function removeCartItem(id) { removeFromCart(id); renderCart(); }
+
+function renderCheckout() {
+  const cart = readCart();
+  const container = document.getElementById("checkout-container");
+  if (cart.length === 0) {
+    container.innerHTML = `
+      <div class="empty-state">
+        <h2>Your cart is empty</h2>
+        <p>Add a few products before checking out.</p>
+        <a href="#products" class="btn btn-mustard">Browse Products</a>
+      </div>`;
+    return;
+  }
+  const orderLinesHTML = cart.map(item => {
+    const p = getProductById(item.id);
+    if (!p) return "";
+    return `<div class="order-line"><span>${p.name} × ${item.qty}</span><span>${formatINR(p.price * item.qty)}</span></div>`;
+  }).join("");
+  const subtotal = cartTotal();
+  const total = subtotal + SHIPPING;
+
+  container.innerHTML = `
+    <div class="checkout-layout">
+      <div>
+        <div class="checkout-step-title"><span class="num">1</span><h3 style="margin:0;">Shipping details</h3></div>
+        <form id="checkout-form">
+          <div class="form-row">
+            <div class="form-field"><label for="full-name">Full name</label><input type="text" id="full-name" required></div>
+            <div class="form-field"><label for="phone">Phone number</label><input type="tel" id="phone" required></div>
+          </div>
+          <div class="form-field"><label for="email">Email</label><input type="email" id="email" required></div>
+          <div class="form-field"><label for="address">Address</label><input type="text" id="address" required placeholder="House no., street, area"></div>
+          <div class="form-row">
+            <div class="form-field"><label for="city">City</label><input type="text" id="city" required></div>
+            <div class="form-field"><label for="pincode">Pincode</label><input type="text" id="pincode" required></div>
+          </div>
+          <div class="checkout-step-title" style="margin-top:32px;"><span class="num">2</span><h3 style="margin:0;">Payment method</h3></div>
+          <div class="form-field">
+            <select id="payment-method">
+              <option>Cash on Delivery</option>
+              <option>UPI</option>
+              <option>Card</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-mustard btn-block" style="margin-top:12px;">Place Order — ${formatINR(total)}</button>
+        </form>
+      </div>
+      <div class="summary-card">
+        <h3>Order Summary</h3>
+        ${orderLinesHTML}
+        <div class="summary-row" style="margin-top:16px;"><span>Subtotal</span><span>${formatINR(subtotal)}</span></div>
+        <div class="summary-row"><span>Shipping</span><span>${formatINR(SHIPPING)}</span></div>
+        <div class="summary-total"><span>Total</span><span>${formatINR(total)}</span></div>
+      </div>
+    </div>`;
+
+  document.getElementById("checkout-form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const orderId = "TM" + Math.floor(100000 + Math.random() * 900000);
+    container.innerHTML = `
+      <div class="confirmation">
+        <div class="check-badge">✓</div>
+        <h2>Order placed successfully</h2>
+        <p>Thank you for supporting tribal farming communities. A confirmation has been noted for your order.</p>
+        <div class="order-id">Order ID: ${orderId}</div>
+        <p style="margin-top:24px; font-family:'IBM Plex Mono', monospace; font-size:0.95rem;">Total paid: ${formatINR(total)}</p>
+        <div style="margin-top:32px;">
+          <a href="#products" class="btn btn-outline">Continue Shopping</a>
+          <a href="#home" class="btn btn-primary" style="margin-left:12px;">Back to Home</a>
+        </div>
+      </div>`;
+    clearCart();
+  });
+}
+
+/* ---------- Farmer registration form (static page, no route re-render needed) ---------- */
+function bindRegisterForm() {
+  const form = document.getElementById("register-form");
+  if (!form || form.dataset.bound) return;
+  form.dataset.bound = "true";
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const selectedMillets = Array.from(form.querySelectorAll('input[name="r-millet"]:checked')).map(cb => cb.value);
+    if (selectedMillets.length === 0) {
+      const group = document.getElementById("r-millet-group");
+      group.style.outline = "2px solid #c0392b";
+      group.style.outlineOffset = "6px";
+      group.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => { group.style.outline = ""; group.style.outlineOffset = ""; }, 2500);
+      return;
+    }
+    const regId = "TMF" + Math.floor(100000 + Math.random() * 900000);
+    const success = document.getElementById("register-success");
+    success.textContent = `Thank you for registering — your reference ID is ${regId}. Millets grown: ${selectedMillets.join(", ")}. Our team will contact you within 3–5 working days.`;
+    success.classList.add("show");
+    form.reset();
+    setTimeout(() => success.classList.remove("show"), 6000);
+  });
+}
+
+/* ---------- Contact page registration form (static page, no route re-render needed) ---------- */
+function bindContactForm() {
+  const form = document.getElementById("contact-form");
+  if (!form || form.dataset.bound) return;
+  form.dataset.bound = "true";
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const selectedMillets = Array.from(form.querySelectorAll('input[name="cf-millet"]:checked')).map(cb => cb.value);
+    if (selectedMillets.length === 0) {
+      const group = document.getElementById("cf-millet-group");
+      group.style.outline = "2px solid #c0392b";
+      group.style.outlineOffset = "6px";
+      group.scrollIntoView({ behavior: "smooth", block: "center" });
+      setTimeout(() => { group.style.outline = ""; group.style.outlineOffset = ""; }, 2500);
+      return;
+    }
+    const regId = "TMF" + Math.floor(100000 + Math.random() * 900000);
+    const success = document.getElementById("contact-success");
+    success.textContent = `Thank you for registering — your reference ID is ${regId}. Millets grown: ${selectedMillets.join(", ")}. Our team will contact you within 3–5 working days.`;
+    success.classList.add("show");
+    form.reset();
+    setTimeout(() => success.classList.remove("show"), 6000);
+  });
+}
+
+/* ---------- Router ---------- */
+const ROUTE_TO_PAGE = {
+  home: "page-home",
+  about: "page-about",
+  products: "page-products",
+  product: "page-product",
+  cart: "page-cart",
+  checkout: "page-checkout",
+  register: "page-register",
+  contact: "page-contact"
+};
+
+function parseHash() {
+  const raw = window.location.hash.replace(/^#\/?/, "");
+  if (!raw) return { route: "home", param: null };
+  const parts = raw.split("/");
+  return { route: parts[0] || "home", param: parts[1] || null };
+}
+
+function navigateTo(route, param) {
+  window.location.hash = param ? `${route}/${param}` : route;
+}
+
+function updateActiveNav(route) {
+  document.querySelectorAll("[data-route]").forEach(link => {
+    link.classList.toggle("active", link.dataset.route === route);
+  });
+}
+
+function renderRoute() {
+  const { route, param } = parseHash();
+  const pageId = ROUTE_TO_PAGE[route] || "page-home";
+
+  document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+  document.getElementById(pageId).classList.add("active");
+  updateActiveNav(route === "product" ? "products" : route);
+  window.scrollTo(0, 0);
+
+  if (route === "home") renderFeatured();
+  if (route === "products") renderAllProducts();
+  if (route === "product") renderProductDetail(param || PRODUCTS[0].id);
+  if (route === "cart") renderCart();
+  if (route === "checkout") renderCheckout();
+  if (route === "register") bindRegisterForm();
+  if (route === "contact") bindContactForm();
+
+  // close mobile nav on navigation
+  const nav = document.querySelector(".main-nav");
+  if (nav) nav.classList.remove("open");
+}
+
+window.addEventListener("hashchange", renderRoute);
+document.addEventListener("DOMContentLoaded", () => {
+  updateCartBadge();
+  renderRoute();
+
+  const toggle = document.querySelector(".nav-toggle");
+  const nav = document.querySelector(".main-nav");
+  if (toggle && nav) {
+    toggle.addEventListener("click", () => {
+      nav.classList.toggle("open");
+      toggle.setAttribute("aria-expanded", nav.classList.contains("open") ? "true" : "false");
+    });
+  }
+});
+
+</script>
+</body>
+</html>
