@@ -1714,24 +1714,12 @@ const PRODUCTS = [
 
 const GOOGLE_FORMS = {
   farmerRegistration: "https://forms.gle/AAZL5RQoVAVXK4ZFA",
-  order: "https://forms.gle/j3WcSzjEiA3p6fuM6"
+  order: "https://docs.google.com/forms/d/e/1FAIpQLSeS7DJvVYMn3pE8pCF5sCm3kqFfaNNncLnYwL7vZzZ7BL9VLw/viewform"
 };
 
-// These values must contain the Google Forms entry IDs from the Order Form's pre-filled URL.
 const ORDER_FORM_FIELDS = {
-  products: "",
-  orderTotal: "",
-  customerName: "",
-  phone: "",
-  email: "",
-  address: "",
-  city: "",
-  district: "",
-  state: "",
-  pinCode: "",
-  paymentMethod: "",
-  utr: "",
-  notes: ""
+  products: "entry.1775701965",
+  total: "entry.529608795"
 };
 
 function formatINR(amount) { return "₹" + amount.toLocaleString("en-IN"); }
@@ -1742,29 +1730,17 @@ function openGoogleForm(url) {
   window.open(url, "_blank", "noopener,noreferrer");
 }
 
-function getOrderFormUrl(cart, checkoutData) {
+function buildGoogleOrderFormUrl() {
+  const cart = readCart();
   const productSummary = cart.map(item => {
     const product = getProductById(item.id);
     return product ? `${product.name} × ${item.qty}` : "";
-  }).filter(Boolean).join(" | ");
+  }).filter(Boolean).join(", ");
   const total = formatINR(cartTotal() + SHIPPING);
-  const values = {
-    products: productSummary,
-    orderTotal: total,
-    customerName: checkoutData.name,
-    phone: checkoutData.phone,
-    email: checkoutData.email,
-    address: checkoutData.address,
-    city: checkoutData.city,
-    paymentMethod: checkoutData.paymentMethod
-  };
-  const hasConfiguredFields = Object.values(ORDER_FORM_FIELDS).some(Boolean);
-  if (!hasConfiguredFields) return GOOGLE_FORMS.order;
-
   const formUrl = new URL(GOOGLE_FORMS.order);
-  Object.entries(ORDER_FORM_FIELDS).forEach(([field, entryId]) => {
-    if (entryId && values[field]) formUrl.searchParams.set(`entry.${entryId}`, values[field]);
-  });
+  formUrl.searchParams.set("usp", "pp_url");
+  formUrl.searchParams.set(ORDER_FORM_FIELDS.products, productSummary);
+  formUrl.searchParams.set(ORDER_FORM_FIELDS.total, total);
   return formUrl.toString();
 }
 
@@ -2042,16 +2018,12 @@ function renderCheckout() {
 
   document.getElementById("checkout-form").addEventListener("submit", (e) => {
     e.preventDefault();
-    const checkoutData = {
-      name: document.getElementById("full-name").value.trim(),
-      phone: document.getElementById("phone").value.trim(),
-      email: document.getElementById("email").value.trim(),
-      address: document.getElementById("address").value.trim(),
-      city: document.getElementById("city").value.trim(),
-      paymentMethod: document.getElementById("payment-method").value
-    };
+    if (readCart().length === 0) {
+      showToast("Your cart is empty. Add products before continuing.");
+      return;
+    }
     showToast("You're being redirected to our secure order form. Please complete it to submit your order.");
-    openGoogleForm(getOrderFormUrl(readCart(), checkoutData));
+    openGoogleForm(buildGoogleOrderFormUrl());
   });
 }
 
