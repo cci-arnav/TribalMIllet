@@ -37,6 +37,18 @@
 
 * { box-sizing: border-box; }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -941,6 +953,145 @@ section { padding: 88px 0; }
 .page { display: none; }
 .page.active { display: block; }
 
+/* ---------- TribalMillet Assistant ---------- */
+.chatbot-launcher {
+  position: fixed; right: 24px; bottom: 24px; z-index: 1001;
+  width: 60px; height: 60px; padding: 0; border: 0; border-radius: 50%;
+  background: var(--forest); color: var(--cream);
+  display: flex; align-items: center; justify-content: center; cursor: pointer;
+  box-shadow: 0 10px 28px rgba(34, 53, 40, 0.28);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+.chatbot-launcher:hover { transform: translateY(-2px); background: var(--forest-deep); box-shadow: 0 14px 32px rgba(34, 53, 40, 0.34); }
+.chatbot-launcher:focus-visible, .chatbot-close:focus-visible, .chatbot-send:focus-visible,
+.chatbot-question:focus-visible, .chatbot-action:focus-visible { outline: 2px solid var(--mustard); outline-offset: 3px; }
+.chatbot-launcher svg { width: 27px; height: 27px; }
+.chatbot-launcher .chatbot-icon-close { display: none; }
+.chatbot-launcher[aria-expanded="true"] .chatbot-icon-chat { display: none; }
+.chatbot-launcher[aria-expanded="true"] .chatbot-icon-close { display: block; }
+
+.chatbot-panel {
+  position: fixed; right: 24px; bottom: 96px; z-index: 1000;
+  width: min(390px, calc(100vw - 32px)); height: min(620px, calc(100dvh - 120px)); min-height: 430px;
+  background: var(--cream); border: 1px solid var(--line); border-radius: var(--radius-lg);
+  box-shadow: 0 18px 55px rgba(43, 36, 32, 0.22);
+  display: flex; flex-direction: column; overflow: hidden;
+  opacity: 0; visibility: hidden; pointer-events: none;
+  transform: translateY(16px) scale(0.97); transform-origin: bottom right;
+  transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s;
+}
+.chatbot-panel.open { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0) scale(1); }
+.chatbot-header {
+  background: var(--forest); color: var(--cream); padding: 17px 18px;
+  display: flex; align-items: center; gap: 12px; flex-shrink: 0;
+}
+.chatbot-avatar {
+  width: 40px; height: 40px; border-radius: 50%; background: var(--mustard); color: var(--white);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.chatbot-avatar svg { width: 21px; height: 21px; }
+.chatbot-heading { min-width: 0; flex: 1; }
+.chatbot-heading h2 { color: var(--cream); font-size: 1.12rem; line-height: 1.2; margin: 0 0 3px; }
+.chatbot-status {
+  display: flex; align-items: center; gap: 6px; color: rgba(247, 241, 228, 0.75);
+  font-family: 'IBM Plex Mono', monospace; font-size: 0.67rem; letter-spacing: 0.04em; text-transform: uppercase;
+}
+.chatbot-status::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--mustard); }
+.chatbot-close {
+  width: 34px; height: 34px; padding: 0; border: 0; border-radius: 50%; background: transparent;
+  color: var(--cream); display: flex; align-items: center; justify-content: center; cursor: pointer;
+  transition: background 0.15s ease;
+}
+.chatbot-close:hover { background: rgba(247, 241, 228, 0.12); }
+.chatbot-close svg { width: 20px; height: 20px; }
+.chatbot-messages {
+  flex: 1; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  padding: 18px 16px 12px; scroll-behavior: smooth;
+  scrollbar-width: thin; scrollbar-color: var(--mustard-tint) transparent;
+}
+.chatbot-message { display: flex; margin-bottom: 12px; animation: chatbot-message-in 0.2s ease both; }
+.chatbot-message.user { justify-content: flex-end; }
+.chatbot-bubble {
+  max-width: 84%; padding: 10px 12px; border-radius: var(--radius-lg);
+  font-size: 0.86rem; line-height: 1.48; white-space: pre-line;
+}
+.chatbot-message.assistant .chatbot-bubble {
+  background: var(--white); color: var(--charcoal-soft); border: 1px solid var(--line);
+  border-bottom-left-radius: 2px; box-shadow: 0 2px 9px rgba(43, 36, 32, 0.04);
+}
+.chatbot-message.user .chatbot-bubble { background: var(--mustard); color: var(--white); border-bottom-right-radius: 2px; }
+.chatbot-bubble strong {
+  display: block; color: var(--charcoal); font-family: 'Fraunces', serif;
+  font-size: 1rem; font-weight: 600; margin-bottom: 4px;
+}
+.chatbot-subtext { display: block; margin-top: 6px; color: var(--charcoal-soft); font-size: 0.78rem; }
+.chatbot-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 9px; }
+.chatbot-action {
+  display: inline-flex; align-items: center; gap: 5px; padding: 7px 10px;
+  border: 1px solid var(--forest); border-radius: var(--radius); background: transparent;
+  color: var(--forest); font-size: 0.76rem; font-weight: 700; line-height: 1; cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.chatbot-action:hover { background: var(--forest); color: var(--cream); }
+.chatbot-action svg { width: 13px; height: 13px; }
+.chatbot-quick-questions {
+  display: flex; flex-wrap: wrap; gap: 7px; margin: 4px 0 14px;
+  animation: chatbot-message-in 0.2s ease both;
+}
+.chatbot-question {
+  padding: 7px 10px; border: 1px solid rgba(165, 111, 31, 0.35); border-radius: var(--radius);
+  background: var(--cream-alt); color: var(--charcoal); font-family: 'Inter', sans-serif;
+  font-size: 0.75rem; font-weight: 600; line-height: 1.3; text-align: left; cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+}
+.chatbot-question:hover { background: var(--mustard-tint); border-color: var(--mustard); transform: translateY(-1px); }
+.chatbot-question:disabled { opacity: 0.55; cursor: wait; }
+.chatbot-typing .chatbot-bubble { display: flex; align-items: center; gap: 4px; min-height: 38px; padding-inline: 14px; }
+.chatbot-typing span {
+  width: 6px; height: 6px; border-radius: 50%; background: var(--mustard-deep);
+  animation: chatbot-dot 1s infinite ease-in-out;
+}
+.chatbot-typing span:nth-child(2) { animation-delay: 0.15s; }
+.chatbot-typing span:nth-child(3) { animation-delay: 0.3s; }
+.chatbot-form {
+  display: flex; align-items: flex-end; gap: 8px; padding: 12px;
+  background: var(--white); border-top: 1px solid var(--line); flex-shrink: 0;
+}
+.chatbot-input {
+  flex: 1; min-width: 0; height: 42px; padding: 10px 12px;
+  border: 1px solid var(--line); border-radius: var(--radius); background: var(--cream);
+  color: var(--charcoal); font-family: 'Inter', sans-serif; font-size: 0.86rem; outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.chatbot-input::placeholder { color: rgba(90, 79, 69, 0.7); }
+.chatbot-input:focus { border-color: var(--mustard); box-shadow: 0 0 0 3px rgba(198, 138, 47, 0.13); }
+.chatbot-input:disabled { opacity: 0.7; }
+.chatbot-send {
+  width: 42px; height: 42px; padding: 0; border: 0; border-radius: var(--radius);
+  background: var(--mustard); color: var(--white); display: flex; align-items: center;
+  justify-content: center; flex-shrink: 0; cursor: pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.chatbot-send:hover { background: var(--mustard-deep); transform: translateY(-1px); }
+.chatbot-send:disabled { opacity: 0.55; cursor: wait; transform: none; }
+.chatbot-send svg { width: 19px; height: 19px; }
+@keyframes chatbot-message-in { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes chatbot-dot {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.45; }
+  30% { transform: translateY(-3px); opacity: 1; }
+}
+@media (max-width: 520px) {
+  .chatbot-launcher { right: 16px; bottom: 16px; width: 54px; height: 54px; }
+  .chatbot-panel {
+    right: 12px; bottom: 82px; width: calc(100vw - 24px);
+    height: min(620px, calc(100dvh - 98px)); min-height: 0;
+  }
+  .chatbot-header { padding: 14px 15px; }
+  .chatbot-messages { padding: 14px 12px 8px; }
+  .chatbot-bubble { max-width: 90%; }
+  .chatbot-form { padding: 10px; }
+}
+
 </style>
 </head>
 <body>
@@ -1350,6 +1501,42 @@ section { padding: 88px 0; }
     </div>
   </div>
 </footer>
+
+<aside class="chatbot-panel" id="chatbot-panel" aria-label="TribalMillet Assistant" aria-hidden="true">
+  <div class="chatbot-header">
+    <div class="chatbot-avatar" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+    </div>
+    <div class="chatbot-heading">
+      <h2>TribalMillet Assistant</h2>
+      <span class="chatbot-status">Here to help</span>
+    </div>
+    <button class="chatbot-close" id="chatbot-close" type="button" aria-label="Close chat">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="chatbot-messages" id="chatbot-messages" role="log" aria-live="polite" aria-relevant="additions">
+    <div class="chatbot-message assistant">
+      <div class="chatbot-bubble">
+        <strong>Namaste! 👋 How can I help you today?</strong>
+        <span class="chatbot-subtext">Ask me about TribalMillet, our millet products, tribal farmers, health benefits, or contact information.</span>
+      </div>
+    </div>
+    <div class="chatbot-quick-questions" id="chatbot-quick-questions" aria-label="Suggested questions"></div>
+  </div>
+  <form class="chatbot-form" id="chatbot-form">
+    <label for="chatbot-input" class="sr-only">Type your message</label>
+    <input class="chatbot-input" id="chatbot-input" type="text" maxlength="240" autocomplete="off" placeholder="Ask a question…">
+    <button class="chatbot-send" id="chatbot-send" type="submit" aria-label="Send message">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m22 2-7 20-4-9-9-4Z"/><path d="M22 2 11 13"/></svg>
+    </button>
+  </form>
+</aside>
+
+<button class="chatbot-launcher" id="chatbot-launcher" type="button" aria-label="Open TribalMillet Assistant" aria-controls="chatbot-panel" aria-expanded="false">
+  <svg class="chatbot-icon-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15a4 4 0 0 1-4 4H8l-5 3V7a4 4 0 0 1 4-4h10a4 4 0 0 1 4 4z"/><path d="M8 10h.01M12 10h.01M16 10h.01"/></svg>
+  <svg class="chatbot-icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+</button>
 
 <script>
 /* ============================================================
@@ -1792,6 +1979,209 @@ function showToast(message) {
   window._toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
 }
 
+/* ---------- TribalMillet Assistant ---------- */
+const CHATBOT_QUESTIONS = [
+  {
+    id: "about", question: "What is TribalMillet?",
+    response: "TribalMillet works directly with tribal farmer collectives across India to bring whole millets and millet foods to your table. It is built around a short, transparent supply chain, fair prices for farmers, and restoring traditional millet farming.",
+    actions: [{ label: "Learn More", route: "about" }]
+  },
+  {
+    id: "products", question: "Explore our millet products",
+    response: "Our shop includes whole grains, everyday staples, convenience foods, snacks, beverages, baby and kids foods, and gift hampers. You can explore items such as millet flours, whole millets, idli and khichdi mixes, porridge, laddoos, and roasted snacks.",
+    actions: [{ label: "Explore Products", route: "products" }]
+  },
+  {
+    id: "benefits", question: "What are the benefits of millets?",
+    response: "Millets are hardy, nutrient-rich grains and many are naturally gluten-free and rich in fibre. Products across our range also highlight qualities such as calcium, iron, protein, and a low glycemic index, depending on the grain. Please check each product page for its specific details.",
+    actions: [{ label: "Explore Products", route: "products" }]
+  },
+  {
+    id: "farmers", question: "How does TribalMillet support tribal farmers?",
+    response: "We work directly with tribal farmer collectives, pay fair prices for their harvest, and settle payments directly with no middlemen. This supports dignified livelihoods, preserves traditional agricultural knowledge, and helps restore indigenous, climate-resilient millet varieties.",
+    actions: [{ label: "Learn More", route: "about" }, { label: "Farmer Registration", route: "register" }]
+  },
+  {
+    id: "why", question: "Why choose TribalMillet?",
+    response: "TribalMillet connects your kitchen to the people who grow your food through direct, fair, and traceable sourcing. Its three commitments are nourishing people, uplifting tribes, and restoring indigenous millet seeds.",
+    actions: [{ label: "Learn More", route: "about" }, { label: "Explore Products", route: "products" }]
+  },
+  {
+    id: "contact", question: "How can I contact you?",
+    response: "Customer care: 96505 60277\nFarmer helpline: 98765 43210\nEmail: globalexpressgroup@gmail.com\nHours: Monday–Saturday, 9:30 AM–6:30 PM IST\nAddress: 13, Institutional Area, Lodhi Road, New Delhi 110 003",
+    actions: [{ label: "Contact Us", route: "contact" }]
+  }
+];
+
+let chatbotIsReplying = false;
+let chatbotHasOpened = false;
+
+function chatbotScrollToBottom() {
+  const messages = document.getElementById("chatbot-messages");
+  if (messages) requestAnimationFrame(() => { messages.scrollTop = messages.scrollHeight; });
+}
+
+function renderChatbotQuestions() {
+  const messages = document.getElementById("chatbot-messages");
+  if (!messages) return;
+  const existing = document.getElementById("chatbot-quick-questions");
+  if (existing) existing.remove();
+  const wrapper = document.createElement("div");
+  wrapper.className = "chatbot-quick-questions";
+  wrapper.id = "chatbot-quick-questions";
+  wrapper.setAttribute("aria-label", "Suggested questions");
+  CHATBOT_QUESTIONS.forEach(item => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "chatbot-question";
+    button.textContent = item.question;
+    button.addEventListener("click", () => handleChatbotQuestion(item));
+    wrapper.appendChild(button);
+  });
+  messages.appendChild(wrapper);
+}
+
+function addChatbotMessage(text, sender, actions) {
+  const messages = document.getElementById("chatbot-messages");
+  const message = document.createElement("div");
+  message.className = `chatbot-message ${sender}`;
+  const bubble = document.createElement("div");
+  bubble.className = "chatbot-bubble";
+  bubble.textContent = text;
+  if (actions && actions.length) {
+    const actionRow = document.createElement("div");
+    actionRow.className = "chatbot-actions";
+    actions.forEach(action => {
+      const link = document.createElement("a");
+      link.className = "chatbot-action";
+      link.href = `#${action.route}`;
+      link.innerHTML = `${action.label}<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>`;
+      link.addEventListener("click", closeChatbot);
+      actionRow.appendChild(link);
+    });
+    bubble.appendChild(actionRow);
+  }
+  message.appendChild(bubble);
+  messages.appendChild(message);
+  chatbotScrollToBottom();
+}
+
+function setChatbotReplying(isReplying) {
+  chatbotIsReplying = isReplying;
+  const input = document.getElementById("chatbot-input");
+  const send = document.getElementById("chatbot-send");
+  input.disabled = isReplying;
+  send.disabled = isReplying;
+  document.querySelectorAll(".chatbot-question").forEach(button => { button.disabled = isReplying; });
+}
+
+function showChatbotReply(item, showQuestionsAfter) {
+  const messages = document.getElementById("chatbot-messages");
+  const typing = document.createElement("div");
+  typing.className = "chatbot-message assistant chatbot-typing";
+  typing.setAttribute("aria-label", "TribalMillet Assistant is typing");
+  typing.innerHTML = '<div class="chatbot-bubble"><span></span><span></span><span></span></div>';
+  messages.appendChild(typing);
+  setChatbotReplying(true);
+  chatbotScrollToBottom();
+  window.setTimeout(() => {
+    typing.remove();
+    addChatbotMessage(item.response, "assistant", item.actions);
+    if (showQuestionsAfter) {
+      renderChatbotQuestions();
+      chatbotScrollToBottom();
+    }
+    setChatbotReplying(false);
+    document.getElementById("chatbot-input").focus();
+  }, 650);
+}
+
+function handleChatbotQuestion(item) {
+  if (chatbotIsReplying) return;
+  const quickQuestions = document.getElementById("chatbot-quick-questions");
+  if (quickQuestions) quickQuestions.remove();
+  addChatbotMessage(item.question, "user");
+  showChatbotReply(item, false);
+}
+
+function findChatbotResponse(message) {
+  const text = message.toLowerCase();
+  const wordsInMessage = text.match(/[a-z]+/g) || [];
+  const exactQuestion = CHATBOT_QUESTIONS.find(item => item.question.toLowerCase() === text);
+  if (exactQuestion) return { item: exactQuestion, unknown: false };
+  const keywordGroups = [
+    { id: "contact", words: ["contact", "phone", "email", "help", "call", "whatsapp", "address"] },
+    { id: "farmers", words: ["farmer", "farmers", "tribal", "community", "communities", "collective", "collectives", "mission", "support"] },
+    { id: "benefits", words: ["benefit", "healthy", "health", "nutrition", "nutritious", "fibre", "fiber", "gluten"] },
+    { id: "products", words: ["product", "products", "millet", "millets", "buy", "shop", "grain", "grains", "flour", "snack", "snacks"] },
+    { id: "about", words: ["about", "tribalmillet", "who are you", "story"] },
+    { id: "why", words: ["why choose", "why tribal", "different"] }
+  ];
+  const match = keywordGroups.find(group => group.words.some(word => word.includes(" ") ? text.includes(word) : wordsInMessage.includes(word)));
+  if (match) return { item: CHATBOT_QUESTIONS.find(item => item.id === match.id), unknown: false };
+  return {
+    item: {
+      response: "I can help you with TribalMillet products, millet benefits, our work with tribal farmers, or contact information. Please choose one of the options below.",
+      actions: []
+    },
+    unknown: true
+  };
+}
+
+function openChatbot() {
+  const panel = document.getElementById("chatbot-panel");
+  const launcher = document.getElementById("chatbot-launcher");
+  panel.classList.add("open");
+  panel.setAttribute("aria-hidden", "false");
+  launcher.setAttribute("aria-expanded", "true");
+  launcher.setAttribute("aria-label", "Close TribalMillet Assistant");
+  window.setTimeout(() => document.getElementById("chatbot-input").focus(), 220);
+  if (chatbotHasOpened) chatbotScrollToBottom();
+  else document.getElementById("chatbot-messages").scrollTop = 0;
+  chatbotHasOpened = true;
+}
+
+function closeChatbot() {
+  const panel = document.getElementById("chatbot-panel");
+  const launcher = document.getElementById("chatbot-launcher");
+  panel.classList.remove("open");
+  panel.setAttribute("aria-hidden", "true");
+  launcher.setAttribute("aria-expanded", "false");
+  launcher.setAttribute("aria-label", "Open TribalMillet Assistant");
+}
+
+function toggleChatbot() {
+  const isOpen = document.getElementById("chatbot-panel").classList.contains("open");
+  if (isOpen) closeChatbot(); else openChatbot();
+}
+
+function initializeChatbot() {
+  const launcher = document.getElementById("chatbot-launcher");
+  const closeButton = document.getElementById("chatbot-close");
+  const form = document.getElementById("chatbot-form");
+  const input = document.getElementById("chatbot-input");
+  renderChatbotQuestions();
+  launcher.addEventListener("click", toggleChatbot);
+  closeButton.addEventListener("click", closeChatbot);
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+    const message = input.value.trim();
+    if (!message || chatbotIsReplying) return;
+    const quickQuestions = document.getElementById("chatbot-quick-questions");
+    if (quickQuestions) quickQuestions.remove();
+    addChatbotMessage(message, "user");
+    input.value = "";
+    const result = findChatbotResponse(message);
+    showChatbotReply(result.item, result.unknown);
+  });
+  document.addEventListener("keydown", event => {
+    if (event.key === "Escape" && document.getElementById("chatbot-panel").classList.contains("open")) {
+      closeChatbot();
+      launcher.focus();
+    }
+  });
+}
+
 /* ---------- Card template ---------- */
 function productCardHTML(p) {
   return `
@@ -2080,6 +2470,7 @@ window.addEventListener("hashchange", renderRoute);
 document.addEventListener("DOMContentLoaded", () => {
   updateCartBadge();
   renderRoute();
+  initializeChatbot();
 
   const toggle = document.querySelector(".nav-toggle");
   const nav = document.querySelector(".main-nav");
