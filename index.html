@@ -949,6 +949,25 @@ section { padding: 88px 0; }
   margin-bottom: 48px;
 }
 
+/* ---------- Android app ---------- */
+.app-download {
+  background: var(--forest);
+  color: var(--cream);
+  border-radius: var(--radius-lg);
+  padding: clamp(28px, 5vw, 56px);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 32px;
+}
+.app-download .eyebrow { color: var(--mustard-tint); }
+.app-download h2 { margin-bottom: 12px; }
+.app-download p { color: var(--cream-alt); margin-bottom: 0; max-width: 560px; }
+.app-download .btn { flex-shrink: 0; }
+@media (max-width: 720px) {
+  .app-download { align-items: flex-start; flex-direction: column; gap: 24px; }
+}
+
 /* ---------- SPA page routing ---------- */
 .page { display: none; }
 .page.active { display: block; }
@@ -1184,6 +1203,19 @@ section { padding: 88px 0; }
           <p>For centuries, tribal farming communities have grown millets on land where few other crops survive. As diets shifted toward polished rice and wheat, that knowledge — and the livelihoods behind it — began to fade.</p>
           <p>TribalMillet works directly with these communities: fair prices, transparent sourcing, and a supply chain built around the farmer's wellbeing.</p>
           <a href="#about" class="btn btn-primary">Read our full story</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section-tight" aria-labelledby="app-download-title">
+      <div class="container">
+        <div class="app-download">
+          <div>
+            <span class="eyebrow">TribalMillet on Android</span>
+            <h2 id="app-download-title">Good food, wherever you are</h2>
+            <p>Explore TribalMillet from your phone. The Android app is available as a direct download.</p>
+          </div>
+          <a href="assets/TribalMillet.apk" download="TribalMillet.apk" class="btn btn-mustard" aria-label="Download the TribalMillet Android app">Get the Android app</a>
         </div>
       </div>
     </section>
@@ -1483,6 +1515,7 @@ section { padding: 88px 0; }
           <li><a href="#products">Products</a></li>
           <li><a href="#register">Farmer Registration</a></li>
           <li><a href="#contact">Contact</a></li>
+          <li><a href="assets/TribalMillet.apk" download="TribalMillet.apk">Android app</a></li>
         </ul>
       </div>
       <div>
